@@ -58,3 +58,18 @@ img{
   height: 100vh;
   padding-top: 50px;
 }
+
+.commentSection{
+  width: 100vw;
+  direction: collumn;
+  text-align: center;
+
+}
+
+.commentCard{
+  width: 30%;
+  margin: 20px auto;
+  padding: 10px;
+  background-color: #EFF8FE;
+  border-radius: 20px;
+}
