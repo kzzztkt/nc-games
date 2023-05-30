@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import { getReviews } from '../utils/utils';
 
 function Reviews() {
-    const[page, setPAge] = useState(true)
+    const [loading, setLoading] = useState(true);
     const [reviews, setReviws] = useState(
         [{
             category: "strategy",
@@ -20,20 +20,32 @@ function Reviews() {
     );
 
     useEffect(()=>{
+        setLoading(true);
         getReviews()
         .then((data) => {
             setReviws(data)
-            
+            setLoading(false);
         })
-
     }, [])
-    console.log(reviews);
+
+    
+    useEffect(() => {
+        if(loading === true){
+            document.getElementById('loadingScreen').style.display = 'block';
+        } else {
+            document.getElementById('loadingScreen').style.display = 'none';
+        }
+    }, [loading])
 
   return (
-    <section className="reviewContainer">
+   <>
+   <div id="loadingScreen">
+    <h2>Loading...</h2>
+   </div>
+    <section id="reviewContainer" className="reviewContainer">
         {reviews.map((review) =>{
             return(
-        <div className="reviewCard">
+        <div key={`${review.review_id + review.owner}`} className="reviewCard">
             <h3>Game: {review.title}</h3>
             <h4>Designer {review.designer}</h4>
             <img src={review.review_img_url}></img>
@@ -45,6 +57,7 @@ function Reviews() {
         })}
 
     </section>
+    </>
   )
 }
 
