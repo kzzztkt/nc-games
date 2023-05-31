@@ -1,11 +1,17 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import { getReviews } from '../utils/utils';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+import { getReviewById, getComments } from '../utils/utils';
+import Comments from './Comments';
 
-function Reviews() {
+
+
+
+function Review() {
     const [loading, setLoading] = useState(true);
-    const [reviews, setReviews] = useState(
+    const { review_id } = useParams();
+    const [review, setReview] = useState(
         [{
             category: "strategy",
             comment_count: "4",
@@ -22,39 +28,43 @@ function Reviews() {
 
     useEffect(()=>{
         setLoading(true);
-        getReviews()
+        getReviewById(review_id)
         .then((data) => {
-            setReviews(data)
-            setLoading(false);
+            setReview(data)
+            
+        })
+        .then(() => {
+            setLoading(false)
         })
     }, [])
-    
+
+
+
   return (
    <>
    {loading ? <div id="loadingScreen">
     <h2>Loading...</h2>
-   </div> :  
+   </div> : 
    
     <section className="reviewContainer">
-        {reviews.map((review) =>{
-            return(
-        <Link key={`${review.review_id}`} to={`/reviews/${review.review_id}`}>
-        <div className="reviewCard">
+        <div key={`${review.created_at}`} className="reviewCard">
             <h3>Game: {review.title}</h3>
             <h4>Designer {review.designer}</h4>
             <img src={review.review_img_url}></img>
+            <p>{review.review_body}</p>
             <p>Review by: {review.owner}</p>
             <p>Comments: {review.comment_count}</p>
-        </div>
-        </Link>
-            )
-        })}
 
-    </section>}
+        </div>
+    </section>
+}
+    <Comments review_id={review_id}/>
+    
+  
     </>
   )
 }
 
 
 
-export default Reviews
+export default Review

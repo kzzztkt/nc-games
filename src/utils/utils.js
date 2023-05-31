@@ -6,7 +6,7 @@ const mainApi = axios.create({
 
 function getReviews (){
     return mainApi
-    .get('./reviews')
+    .get(`./reviews`)
     .then((res) =>{
         return res.data.reviews;
     })
@@ -14,5 +14,26 @@ function getReviews (){
         console.log(err);
     })
 }
+function getReviewById (id){
+    return mainApi
+    .get(`./reviews/${id}`)
+    .then((res) =>{
+        return res.data;
+    })
+    .catch((err) =>{
+        console.log(err);
+    })
+}
 
-export {getReviews};
+function getComments (id){
+    return mainApi
+    .get(`./reviews/${id}/comments`)
+    .then((res) =>{
+        return res.data;
+    })
+    .catch((err) =>{
+        console.log(err);
+    })
+}
+
+export {getReviews, getReviewById, getComments};
