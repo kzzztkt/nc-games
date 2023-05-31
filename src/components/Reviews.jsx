@@ -28,26 +28,18 @@ function Reviews() {
             setLoading(false);
         })
     }, [])
-
     
-    useEffect(() => {
-        if(loading === true){
-            document.getElementById('loadingScreen').style.display = 'block';
-        } else {
-            document.getElementById('loadingScreen').style.display = 'none';
-        }
-    }, [loading])
-
   return (
    <>
-   <div id="loadingScreen">
+   {loading ? <div id="loadingScreen">
     <h2>Loading...</h2>
-   </div>
+   </div> :  
+   
     <section className="reviewContainer">
         {reviews.map((review) =>{
             return(
-        <Link to={`/reviews/${review.review_id}`}>
-        <div key={`${review.created_at}`} className="reviewCard">
+        <Link key={`${review.review_id}`} to={`/reviews/${review.review_id}`}>
+        <div className="reviewCard">
             <h3>Game: {review.title}</h3>
             <h4>Designer {review.designer}</h4>
             <img src={review.review_img_url}></img>
@@ -58,7 +50,7 @@ function Reviews() {
             )
         })}
 
-    </section>
+    </section>}
     </>
   )
 }

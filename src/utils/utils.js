@@ -29,7 +29,7 @@ function getComments (id){
     return mainApi
     .get(`./reviews/${id}/comments`)
     .then((res) =>{
-        return res.data.comments;
+        return res.data;
     })
     .catch((err) =>{
         console.log(err);
