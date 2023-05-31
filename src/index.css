@@ -73,3 +73,16 @@ img{
   background-color: #EFF8FE;
   border-radius: 20px;
 }
+.material-symbols-outlined:hover{
+  cursor: pointer;
+
+}
+
+.material-symbols-outlined-blue {
+  color:rgb(0, 106, 255);
+  font-variation-settings:
+  'FILL' 10,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 48
+}
