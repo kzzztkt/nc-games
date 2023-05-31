@@ -2,11 +2,10 @@ import React, { useEffect } from 'react'
 import { useState } from 'react'
 import { getComments } from '../utils/utils'
 
-function Comments({review_id}) {
-    const [comments, setComments] = useState(
-        []
-    )
+import Votes from './Votes'
 
+function Comments({review_id}) {
+    const [comments, setComments] = useState([])
 useEffect(() => {
     getComments(review_id)
             .then((data) => {
@@ -20,11 +19,11 @@ useEffect(() => {
     <section className='commentSection'>
         {comments.map((comment) =>{
             return(
-        <div key={`${comment.created_at}`} className="commentCard">
+        <div key={`${comment.comment_id}`} className="commentCard">
             <h3>{comment.author}</h3>
             <h4>{comment.body}</h4>
             <p>{comment.created_at.slice(0, 10)}</p>
-            <p>Votes: {comment.votes}</p>
+            <Votes votes={Number(comment.votes)}/>
         </div>
             )
         })}
