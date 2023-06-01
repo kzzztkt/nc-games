@@ -2,7 +2,6 @@ import React, { useEffect } from 'react'
 import { useState } from 'react'
 import { getComments } from '../utils/utils'
 
-import Votes from './Votes'
 
 function Comments({review_id}) {
     const [comments, setComments] = useState([])
@@ -23,7 +22,7 @@ useEffect(() => {
             <h3>{comment.author}</h3>
             <h4>{comment.body}</h4>
             <p>{comment.created_at.slice(0, 10)}</p>
-            <Votes votes={Number(comment.votes)}/>
+            <p>{comment.votes}</p>
         </div>
             )
         })}

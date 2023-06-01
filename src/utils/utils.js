@@ -29,7 +29,15 @@ async function getComments (id){
         console.log(err);
     }
 }
+async function patchReview (id, object){
+    try {
+        const res = await mainApi.patch(`./reviews/${id}`, object)
+            return res;
+    } catch (err) {
+        console.log(err);
+    }
+}
 
 
 
-export {getReviews, getReviewById, getComments};
+export {getReviews, getReviewById, getComments, patchReview};

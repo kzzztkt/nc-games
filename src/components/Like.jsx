@@ -1,21 +1,24 @@
 import React from 'react'
 import { useState } from 'react';
+import { patchReview } from '../utils/utils'
 
 
 
-function Like({vote, setVote}) {
-    const [voted, setVoted] = useState(false)
-    // console.log(comments);
+function Like({vote, setVote, review_id, voted, setVoted}) {
+    
 
-    function handleLike (id) {
+    function handleLike () {
         if(voted){
             setVoted(false);
             setVote(vote - 1) 
         } else {
             setVoted(true);
             setVote(vote + 1) 
-        }
-        }
+            patchReview(review_id, {inc_vote:1})
+           .then((data) => {
+        })
+      }
+    }
 
   return (
     <>

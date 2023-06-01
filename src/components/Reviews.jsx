@@ -45,6 +45,7 @@ function Reviews() {
             <img src={review.review_img_url}></img>
             <p>Review by: {review.owner}</p>
             <p>Comments: {review.comment_count}</p>
+            
         </div>
         </Link>
             )
