@@ -2,9 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { postComment } from '../utils/utils';
 
 function PostingForm({setComments, review_id}) {
-  const [loading, setLoading] = useState(false);
   const [validForm, setValidForm] = useState(false);
-  const [username, setUsername] = useState('')
+  const [username, setUsername] = useState('weegembump')
   const [comment, setComment] = useState('')
   const [commentToSend, setCommentToSend] = useState(
     {
@@ -14,7 +13,7 @@ function PostingForm({setComments, review_id}) {
   )
 
   useEffect(() =>{
-    if(username !== '' && comment !== ''){
+    if(comment !== ''){
       // document.getElementById("submitButton").disabled = "false";
       setValidForm(true)
       setCommentToSend({
@@ -24,7 +23,7 @@ function PostingForm({setComments, review_id}) {
     } else {
       setValidForm(false);
     }
-  },[username, comment])
+  },[comment])
 
 
   function handleFormSubmit(event){
@@ -37,7 +36,6 @@ function PostingForm({setComments, review_id}) {
                 document.getElementById('positiveInputValidation').style.display = 'block'
                 document.getElementById('negativeInputValidation').style.display = 'none'
                 document.getElementById('commentArea').value ='';
-                setUsername('')
                 setComment('')
                 setComments((currComments) => {
                   return ([{author: username, body: comment, created_at: `${String(new Date())}`, votes:"0"}, ...currComments])
@@ -51,9 +49,7 @@ function PostingForm({setComments, review_id}) {
       document.getElementById('negativeInputValidation').style.display = 'block'
     }
   }
-  function usernameSetter(event){
-    setUsername(event.target.value)
-   }
+
  function commentSetter(event){
   setComment(event.target.value)
  }
@@ -64,8 +60,6 @@ function PostingForm({setComments, review_id}) {
       <p id='positiveInputValidation'>Comment submitted!</p>
     <p>Post a comment</p>
     <form onSubmit={handleFormSubmit} id="commentForm">
-    <input value={username} onChange={usernameSetter} name="username" placeholder='Enter username here' className='inputsOnFormn'>
-        </input>
         <textarea id="commentArea" onChange={commentSetter} placeholder='Write your comment here'  className='inputsOnForm'>
         </textarea>
         <button id="submitButton" type="submit">Post comment</button>
