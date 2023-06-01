@@ -11,11 +11,20 @@ function Like({vote, setVote, review_id, voted, setVoted}) {
         if(voted){
             setVoted(false);
             setVote(vote - 1) 
+            patchReview(review_id, {inc_vote:-1})
+            .then(() => {
+            })
+            .catch(() => {
+              alert('Like failed please try again later');
+            })
         } else {
             setVoted(true);
             setVote(vote + 1) 
             patchReview(review_id, {inc_vote:1})
-           .then((data) => {
+           .then(() => {
+        })
+        .catch(() => {
+          alert('Like failed please try again later');
         })
       }
     }

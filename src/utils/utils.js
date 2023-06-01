@@ -30,12 +30,9 @@ async function getComments (id){
     }
 }
 async function patchReview (id, object){
-    try {
         const res = await mainApi.patch(`./reviews/${id}`, object)
             return res;
-    } catch (err) {
-        console.log(err);
-    }
+
 }
 
 
