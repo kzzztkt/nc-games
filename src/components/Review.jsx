@@ -5,6 +5,7 @@ import { Link, useParams } from 'react-router-dom';
 import { getReviewById, getComments } from '../utils/utils';
 import Comments from './Comments';
 import Votes from './Votes';
+import PostingForm from './PostingForm';
 
 
 
@@ -61,6 +62,7 @@ function Review() {
         </div>
     </section>
 }
+    
     <Comments review_id={review_id}/>
     
   

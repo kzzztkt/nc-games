@@ -72,6 +72,7 @@ img{
   padding: 10px;
   background-color: #EFF8FE;
   border-radius: 20px;
+  min-width: 200px;
 }
 .material-symbols-outlined:hover{
   cursor: pointer;
@@ -85,4 +86,41 @@ img{
   'wght' 400,
   'GRAD' 0,
   'opsz' 48
+}
+
+#commentForm{
+  /* background-color:aquamarine; */
+
+  min-width: 200px; 
+  display: inline-block;
+}
+.inputsOnForm {
+  /* background-color: aquamarine; */
+  display: block;
+  margin: 30px;
+  border-radius: 10px;
+  min-width: 200px; 
+  /* border: solid, 1px black; */
+  padding: 8px 10px;
+}
+
+.commentBody{
+
+  min-height: 100px;
+}
+.commentBody::placeholder{
+  position: absolute;
+  margin-top: 10px;
+  
+} 
+
+
+#positiveInputValidation{
+  display: none;
+  color: green;
+}
+
+#negativeInputValidation{
+  display: none;
+  color: red;
 }
