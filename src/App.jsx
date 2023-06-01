@@ -6,10 +6,8 @@ import Review from './components/Review'
 import Welcome from './components/Welcome'
 
 
-
-
-
 function App() {
+
 
 
   return (

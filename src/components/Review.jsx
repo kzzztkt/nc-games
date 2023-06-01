@@ -4,12 +4,14 @@ import { getReviews } from '../utils/utils';
 import { Link, useParams } from 'react-router-dom';
 import { getReviewById, getComments } from '../utils/utils';
 import Comments from './Comments';
+import Votes from './Votes';
 
 
 
 
 function Review() {
     const [loading, setLoading] = useState(true);
+    const [voted, setVoted] = useState(false);
     const { review_id } = useParams();
     const [review, setReview] = useState(
         [{
@@ -54,6 +56,7 @@ function Review() {
             <p>{review.review_body}</p>
             <p>Review by: {review.owner}</p>
             <p>Comments: {review.comment_count}</p>
+            <Votes votes={Number(review.votes)} review={{...review}} review_id={review.review_id} voted={voted} setVoted={setVoted}/>
 
         </div>
     </section>
