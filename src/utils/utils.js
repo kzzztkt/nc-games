@@ -29,6 +29,14 @@ async function getComments (id){
         console.log(err);
     }
 }
+async function getCategories (){
+    try {
+        const res = await mainApi.get(`/categories`)
+            return res.data;
+    } catch (err) {
+        console.log(err);
+    }
+}
 async function patchReview (id, object){
         const res = await mainApi.patch(`/reviews/${id}`, object)
             return res;
@@ -42,4 +50,4 @@ async function postComment (id, object){
 
 
 // app.post('/api/reviews/:review_id/comments', postCommentController)
-export {getReviews, getReviewById, getComments, patchReview, postComment};
+export {getReviews, getReviewById, getComments, patchReview, postComment, getCategories};

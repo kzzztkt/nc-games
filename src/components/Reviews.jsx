@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import { getReviews } from '../utils/utils';
 import { Link } from 'react-router-dom';
 
-function Reviews() {
+function Reviews({category}) {
     const [loading, setLoading] = useState(true);
     const [reviews, setReviews] = useState(
         [{
@@ -37,6 +37,21 @@ function Reviews() {
    
     <section className="reviewContainer">
         {reviews.map((review) =>{
+            if(category){
+                if(review.category === category){
+                    return(
+                    <Link key={`${review.review_id}`} to={`/reviews/${review.review_id}`}>
+        <div className="reviewCard">
+            <h3>Game: {review.title}</h3>
+            <h4>Designer {review.designer}</h4>
+            <img src={review.review_img_url}></img>
+            <p>Review by: {review.owner}</p>
+            <p>Comments: {review.comment_count}</p>
+            
+        </div>
+        </Link>)
+                }
+            } else {
             return(
         <Link key={`${review.review_id}`} to={`/reviews/${review.review_id}`}>
         <div className="reviewCard">
@@ -49,6 +64,7 @@ function Reviews() {
         </div>
         </Link>
             )
+            }
         })}
 
     </section>}
