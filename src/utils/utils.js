@@ -23,18 +23,23 @@ async function getReviewById (id){
 
 async function getComments (id){
     try {
-        const res = await mainApi.get(`./reviews/${id}/comments`)
+        const res = await mainApi.get(`/reviews/${id}/comments`)
             return res.data;
     } catch (err) {
         console.log(err);
     }
 }
 async function patchReview (id, object){
-        const res = await mainApi.patch(`./reviews/${id}`, object)
+        const res = await mainApi.patch(`/reviews/${id}`, object)
             return res;
 
 }
 
+async function postComment (id, object){
+    const res = await mainApi.post(`/reviews/${id}/comments`, object)
+    return res;
+}
 
 
-export {getReviews, getReviewById, getComments, patchReview};
+// app.post('/api/reviews/:review_id/comments', postCommentController)
+export {getReviews, getReviewById, getComments, patchReview, postComment};
