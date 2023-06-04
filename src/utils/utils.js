@@ -48,6 +48,11 @@ async function postComment (id, object){
     return res;
 }
 
+async function deleteComment (id){
+    const res = await mainApi.delete(`/comments/${id}`)
+    return res;
+}
+
 
 // app.post('/api/reviews/:review_id/comments', postCommentController)
-export {getReviews, getReviewById, getComments, patchReview, postComment, getCategories};
+export {getReviews, getReviewById, getComments, patchReview, postComment, getCategories, deleteComment};

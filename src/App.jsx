@@ -5,13 +5,16 @@ import Users from './components/Users'
 import Review from './components/Review'
 import Welcome from './components/Welcome'
 import Category from './components/Category'
+import { UserContext } from './utils/context'
+import { useState } from 'react'
+
 
 
 function App() {
-
-
+const [username, setUsername] = useState('weegembump');
 
   return (
+    <UserContext.Provider value ={{ username, setUsername}}>
     <div className='app'>
     <Nav/>
     <Routes>
@@ -22,6 +25,7 @@ function App() {
       <Route path="/reviews/categories/:category" element={<Category/>}/>
     </Routes>
     </div>
+    </UserContext.Provider>
   )
 }
 

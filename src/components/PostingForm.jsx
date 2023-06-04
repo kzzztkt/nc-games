@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { postComment } from '../utils/utils';
+import { useContext } from 'react';
+import { UserContext } from '../utils/context';
 
 function PostingForm({setComments, review_id}) {
   const [validForm, setValidForm] = useState(false);
-  const [username, setUsername] = useState('weegembump')
+  const {username, setUsername} = useContext(UserContext)
   const [comment, setComment] = useState('')
   const [commentToSend, setCommentToSend] = useState(
     {
@@ -11,7 +13,6 @@ function PostingForm({setComments, review_id}) {
       body: comment
     }
   )
-
   useEffect(() =>{
     if(comment !== ''){
       // document.getElementById("submitButton").disabled = "false";
